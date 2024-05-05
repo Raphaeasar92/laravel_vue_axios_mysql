@@ -2,27 +2,26 @@
 
 namespace App\Http\Controllers\ApiDash;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\Client;
 
 class HomeController extends Controller
 {
     public function index() 
     {
-        $clients = [
+        $clients = Client::all();
+
+        $products = [
             [
             'id' => 1,
-            'name' => 'José Ricardo',
-            'email' => 'jose@gmail.com'
-            ],
-            [
-                'id' => 2,
-                'name' => 'Renato da Silva',
-                'email' => 'renato@gmail.com'
+            'name' => 'Video Game',
+            'value' => '10.50'
             ]
         ];
         return response()->json([
-            'clients' => $clients
+            'clients' => $clients,
+            'products' => $products,
         ]);
     }
 }

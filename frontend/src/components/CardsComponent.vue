@@ -21,7 +21,7 @@ export default {
         type: String,
         percentage: String,
         icon: String,
-        qtd: String,
+        qtd: Number,
     }
 }
 </script>

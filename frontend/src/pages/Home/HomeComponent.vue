@@ -8,11 +8,11 @@
             <div>
                 <div class="row">
                     <div class="col-12 col-md-3">
-                        <CardsComponent :type="'Clientes'" :percentage="'8%'" :icon="'fa-users'" :qtd="clients.length" />
+                        <CardsComponent :type="'Clientes'" :percentage="'8%'" :icon="'fa-users'" :qtd="'7590'" />
                     </div>
 
                     <div class="col-12 col-md-3">
-                        <CardsComponent :type="'Produtos'" :percentage="'12%'" :icon="'fa-box'" :qtd="products.length" />
+                        <CardsComponent :type="'Produtos'" :percentage="'12%'" :icon="'fa-box'" :qtd="'350'" />
                     </div>
 
                     <div class="col-12 col-md-3">
@@ -28,13 +28,13 @@
                 <div class="mt-5">
                     <div class="row">
                         <div class="col-12 col-md-6">
-                            <ListsComponent :data="clients" description="Clientes"
-                                :columns="['Nome', 'E-mail']" />
+                            <ListsComponent :data="users" description="Clientes"
+                                :columns="['Nome', 'E-mail', 'Telefone']" />
                         </div>
 
                         <div class="col-12 col-md-6">
-                            <ListsComponent :data="products" description="Produtos"
-                                :columns="['Nome', 'Valor' ]" />
+                            <ListsComponent :data="users" description="Produtos"
+                                :columns="['Nome', 'E-mail', 'Telefone']" />
                         </div>
                     </div>
                 </div>
@@ -55,8 +55,7 @@ export default {
     name: 'HomeComponent',
     data() {
         return {
-            clients: [],
-            products: [],
+            users: []
         }
     },
 
@@ -66,12 +65,16 @@ export default {
 
     methods: {
         async getUsers() {
-            let response = await axios.get('/');
+            let response = await axios.get('https://jsonplaceholder.typicode.com/users');
+            if (response.status = 200) {
+                this.users = response.data;
+            } else {
+                console.error("Ocorreu um erro na API.");
+            }
 
-           
-            if (response.status == 200) {
-                this.clients = response.data.clients;
-                this.products = response.data.products;
+            response = await axios.get('http://localhost:8000/api/');
+            if (response.status = 200) {
+                console.log(response.data);
             } else {
                 console.error("Ocorreu um erro na API.");
             }
