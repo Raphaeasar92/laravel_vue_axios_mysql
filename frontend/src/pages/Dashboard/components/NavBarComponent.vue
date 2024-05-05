@@ -27,6 +27,8 @@ export default {
     .logout {
         color: #fff;
         text-decoration: none;
+        display: flex;
+        margin-left: 920px;
     }
 }
 </style>
